@@ -1,0 +1,43 @@
+<div class="container">
+    <div id="expand"></div>
+</div>
+  </div>
+
+<style>
+    body {
+  height: 1000px;
+}
+
+.container {
+  margin-top: 450px;
+  position: relative;
+}
+
+#expand {
+  background: tomato;
+  min-height: 100px;
+  min-width:100%;
+  position: absolute;
+  will-change: height;
+}
+</style>
+
+<script>
+var expandDiv = document.getElementById("expand");
+var speed = 5;
+
+function expanding() {
+  var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
+  var scrollAndSpeed = (scrolltop / speed);
+  //Expand using transform
+  expandDiv.style.transform = "scaley( " + Math.min(Math.max(scrollAndSpeed, 1), 4) + ")";
+  
+  //Or using width
+  // expandDiv.style.height = Math.min(Math.max(scrollAndSpeed, 40), 195) + "%";
+
+}
+
+window.addEventListener('scroll', function() { // on page scroll
+  requestAnimationFrame(expanding); // call parallaxing()
+}, false);
+</script>
